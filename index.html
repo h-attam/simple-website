@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hatice Kartal | Yazılımcı Portfolyo</title>
+    <meta
+      name="description"
+      content="Yazılımcı Hatice Kartal'ın kişisel portfolyo sitesi. Web geliştirme, projeler ve iletişim."
+    />
+    <style>
+      :root {
+        --bg: #050816;
+        --bg-alt: #0b1020;
+        --accent: #f97316;
+        --accent-soft: rgba(249, 115, 22, 0.14);
+        --text: #e5e7eb;
+        --text-soft: #9ca3af;
+        --border: rgba(156, 163, 175, 0.35);
+        --card-radius: 18px;
+        --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #020617 100%);
+        color: var(--text);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        background: radial-gradient(circle at 30% 0, #fed7aa 0, #f97316 30%, #7c2d12 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #020617;
+        font-weight: 800;
+        font-size: 18px;
+        box-shadow: 0 12px 30px rgba(248, 113, 22, 0.55);
+      }
+
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .logo-text span:first-child {
+        font-weight: 600;
+        letter-spacing: 0.03em;
+      }
+
+      .logo-text span:last-child {
+        font-size: 13px;
+        color: var(--text-soft);
+      }
+
+      nav {
+        display: flex;
+        gap: 18px;
+        font-size: 14px;
+      }
+
+      nav a {
+        color: var(--text-soft);
+        text-decoration: none;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+      }
+
+      nav a:hover {
+        color: var(--text);
+        border-color: rgba(249, 115, 22, 0.35);
+        background: rgba(15, 23, 42, 0.9);
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.5fr);
+        gap: 28px;
+        align-items: flex-start;
+      }
+
+      .hero {
+        background: radial-gradient(circle at 0 0, rgba(249, 115, 22, 0.18), transparent 55%),
+          linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96));
+        border-radius: 26px;
+        padding: 26px 24px 24px;
+        border: 1px solid rgba(31, 41, 55, 0.9);
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        right: -80px;
+        top: -120px;
+        width: 260px;
+        height: 260px;
+        background: conic-gradient(
+          from 160deg,
+          rgba(248, 113, 22, 0.18),
+          rgba(59, 130, 246, 0.12),
+          rgba(248, 113, 22, 0.08),
+          transparent 72%
+        );
+        filter: blur(1px);
+        opacity: 0.9;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--accent);
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(249, 115, 22, 0.3);
+      }
+
+      .hero-tag-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+      }
+
+      .hero-heading {
+        margin-top: 14px;
+        font-size: clamp(30px, 4vw, 36px);
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .hero-heading span {
+        background: linear-gradient(120deg, #f97316, #facc15);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-subtitle {
+        margin-top: 10px;
+        color: var(--text-soft);
+        font-size: 15px;
+        max-width: 420px;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .hero-pill {
+        padding: 6px 11px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        font-size: 12px;
+        color: #cbd5f5;
+        background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.25), transparent 60%);
+      }
+
+      .hero-pill strong {
+        color: #e5e7eb;
+        font-weight: 500;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        border-radius: 999px;
+        font-size: 14px;
+        padding: 9px 16px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.13s ease, box-shadow 0.13s ease, background 0.15s ease,
+          border-color 0.15s ease;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #f97316, #fb923c);
+        color: #111827;
+        font-weight: 600;
+        box-shadow: 0 12px 32px rgba(248, 113, 22, 0.55);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 38px rgba(248, 113, 22, 0.7);
+        background: linear-gradient(135deg, #fbbf24, #f97316);
+      }
+
+      .btn-ghost {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        color: var(--text-soft);
+      }
+
+      .btn-ghost:hover {
+        transform: translateY(-1px);
+        border-color: rgba(249, 115, 22, 0.6);
+        background: rgba(15, 23, 42, 0.96);
+        color: var(--text);
+      }
+
+      .btn-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.5);
+        background: #020617;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+      }
+
+      .hero-footer {
+        margin-top: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+
+      .hero-footer span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .hero-footer-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.9);
+      }
+
+      .hero-footer a {
+        color: #bfdbfe;
+        text-decoration: none;
+      }
+
+      .hero-footer a:hover {
+        color: #f97316;
+      }
+
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .card {
+        background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.18), transparent 60%),
+          linear-gradient(145deg, #020617, #020617);
+        border-radius: var(--card-radius);
+        padding: 16px 15px 14px;
+        border: 1px solid rgba(31, 41, 55, 0.9);
+        box-shadow: 0 14px 32px rgba(15, 23, 42, 0.85);
+
+        backdrop-filter: blur(22px);
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .card-title {
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .badge {
+        font-size: 11px;
+        padding: 3px 7px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        color: var(--text-soft);
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      .chip {
+        font-size: 11px;
+        padding: 5px 9px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        color: #e5e7eb;
+      }
+
+      .chip span {
+        color: #9ca3af;
+      }
+
+      .experience-list,
+      .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      .experience-item,
+      .project-item {
+        padding: 7px 8px;
+        border-radius: 12px;
+        border: 1px solid rgba(31, 41, 55, 0.95);
+        background: rgba(15, 23, 42, 0.98);
+      }
+
+      .experience-top,
+      .project-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .experience-role,
+      .project-name {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .experience-meta,
+      .project-meta {
+        font-size: 11px;
+        color: var(--text-soft);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .experience-desc,
+      .project-desc {
+        margin-top: 4px;
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 4px;
+      }
+
+      .tag {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        padding: 3px 7px;
+        border-radius: 999px;
+        border: 1px solid rgba(55, 65, 81, 0.95);
+        color: #9ca3af;
+        background: rgba(15, 23, 42, 0.98);
+      }
+
+      .tag-accent {
+        border-color: rgba(249, 115, 22, 0.8);
+        color: #fed7aa;
+        background: rgba(30, 64, 175, 0.3);
+      }
+
+      .social-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+      }
+
+      .social-link {
+        font-size: 12px;
+        padding: 6px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        color: #e5e7eb;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(15, 23, 42, 0.96);
+        transition: all 0.15s ease;
+      }
+
+      .social-link:hover {
+        border-color: rgba(249, 115, 22, 0.85);
+        color: #fed7aa;
+        background: rgba(15, 23, 42, 0.98);
+      }
+
+      .dot-separator::before {
+        content: "•";
+        margin-right: 4px;
+      }
+
+      footer {
+        margin-top: 10px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(31, 41, 55, 0.95);
+        font-size: 11px;
+        color: var(--text-soft);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      footer span:last-child {
+        opacity: 0.85;
+      }
+
+      /* Responsive */
+      @media (max-width: 840px) {
+        main {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .hero {
+          order: -1;
+        }
+
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        nav {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .page {
+          padding-inline: 16px;
+        }
+
+        .hero {
+          padding: 22px 16px 18px;
+        }
+
+        .card {
+          padding-inline: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="logo">
+          <div class="logo-mark">HK</div>
+          <div class="logo-text">
+            <span>Hatice Kartal</span>
+            <span>Yazılım Geliştirici</span>
+          </div>
+        </div>
+        <nav>
+          <a href="#hakkimda">Hakkımda</a>
+          <a href="#projeler">Projeler</a>
+          <a href="#yetenekler">Yetenekler</a>
+          <a href="#iletisim">İletişim</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="hakkimda">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <span class="hero-tag-dot"></span>
+              <span>Yeni nesil web deneyimleri tasarlayan yazılımcı</span>
+            </div>
+
+            <h1 class="hero-heading">
+              Merhaba, ben <span>Hatice Kartal</span>.<br />
+              Web odaklı yazılım geliştiricisiyim.
+            </h1>
+
+            <p class="hero-subtitle">
+              Kullanıcı deneyimini ve temiz kodu merkeze alan, detaycı bir geliştiriciyim.
+              Modern web teknolojileriyle, sade ama etkileyici arayüzler üretmeyi seviyorum.
+            </p>
+
+            <div class="hero-meta">
+              <div class="hero-pill">
+                <strong>Odak alanlarım:</strong> Frontend geliştirme, UI/UX, React & modern JS
+              </div>
+              <div class="hero-pill">
+                <strong>Çalışma şekli:</strong> Minimal, sürdürülebilir ve ölçeklenebilir kod
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#iletisim" class="btn-primary">
+                İletişime geç
+                <span class="btn-icon">✉️</span>
+              </a>
+              <a href="#projeler" class="btn-ghost">
+                Son projelerime göz at
+                <span class="btn-icon">↓</span>
+              </a>
+            </div>
+
+            <div class="hero-footer">
+              <span>
+                <span class="hero-footer-dot"></span>
+                Her gün yeni bir şey öğrenmeye çalışan, meraklı bir geliştirici.
+              </span>
+              <span>
+                Mentorluk, freelance ve proje iş birliklerine açığım.
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="card" id="yetenekler">
+            <div class="card-header">
+              <h2 class="card-title">
+                Yetenekler
+                <span class="badge">Sürekli gelişiyor</span>
+              </h2>
+            </div>
+            <div class="chip-row">
+              <div class="chip"><span>Web</span> HTML · CSS · SASS · Responsive Tasarım</div>
+              <div class="chip"><span>Frontend</span> JavaScript · React · Next.js</div>
+              <div class="chip"><span>UI</span> Component tasarımı · Tasarım sistemleri</div>
+              <div class="chip"><span>Genel</span> Git · Agile · Dokümantasyon</div>
+            </div>
+          </section>
+
+          <section class="card" id="projeler">
+            <div class="card-header">
+              <h2 class="card-title">
+                Öne çıkan projeler
+                <span class="badge">Seçki</span>
+              </h2>
+            </div>
+            <div class="project-list">
+              <article class="project-item">
+                <div class="project-top">
+                  <div>
+                    <h3 class="project-name">Minimal Kişisel Blog</h3>
+                    <div class="project-meta">
+                      <span>React · CSS · Responsive</span>
+                      <span class="dot-separator">Odak: Hızlı ve okunabilir blog deneyimi</span>
+                    </div>
+                  </div>
+                  <div class="tag tag-accent">kişisel</div>
+                </div>
+                <p class="project-desc">
+                  Temiz tipografi ve sade bir renk paletiyle, içerik odaklı bir blog arayüzü
+                  tasarladım. Mobil öncelikli bir yapıyla performansa önem verdim.
+                </p>
+                <div class="tag-row">
+                  <span class="tag">react</span>
+                  <span class="tag">component mimarisi</span>
+                  <span class="tag">erişilebilirlik</span>
+                </div>
+              </article>
+
+              <article class="project-item">
+                <div class="project-top">
+                  <div>
+                    <h3 class="project-name">Portfolyo Galeri Sitesi</h3>
+                    <div class="project-meta">
+                      <span>Vanilla JS · Animasyon</span>
+                      <span class="dot-separator">Odak: Akışkan geçişler ve mikro etkileşimler</span>
+                    </div>
+                  </div>
+                  <div class="tag">ui/ux</div>
+                </div>
+                <p class="project-desc">
+                  Görsel ağırlıklı bir portfolyo için kart tabanlı bir galeri tasarladım.
+                  Hover efektleri ve yumuşak geçişlerle kullanıcı deneyimini zenginleştirdim.
+                </p>
+                <div class="tag-row">
+                  <span class="tag">animasyon</span>
+                  <span class="tag">css transitions</span>
+                  <span class="tag">responsive</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="card" id="iletisim">
+            <div class="card-header">
+              <h2 class="card-title">
+                İletişim
+                <span class="badge">Birlikte üretelim</span>
+              </h2>
+            </div>
+            <p class="project-desc">
+              Yeni projeler, iş birlikleri veya sadece tanışmak için bana ulaşabilirsiniz.
+              Kısa bir mesaj bırakmanız yeterli.
+            </p>
+
+            <div class="social-row">
+              <a class="social-link" href="mailto:ornek.mail@ornek.com">
+                ✉️
+                <span>E-posta</span>
+              </a>
+              <a
+                class="social-link"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+              >
+                💼
+                <span>LinkedIn</span>
+              </a>
+              <a
+                class="social-link"
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+              >
+                💻
+                <span>GitHub</span>
+              </a>
+            </div>
+
+            <div class="experience-list" style="margin-top: 10px">
+              <div class="experience-item">
+                <div class="experience-top">
+                  <div>
+                    <div class="experience-role">Frontend Odaklı Geliştirici</div>
+                    <div class="experience-meta">
+                      <span>Serbest & kişisel projeler</span>
+                      <span class="dot-separator">Sürekli öğrenme</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="experience-desc">
+                  UI bileşenleri oluşturma, yeniden kullanılabilir yapı kurma ve tasarımları
+                  piksel hassasiyetinde koda dökme konusunda deneyim kazanıyorum.
+                </p>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <footer>
+        <span>© <span id="yil"></span> Hatice Kartal. Tüm hakları saklıdır.</span>
+        <span>Bu sayfa sade, odaklı ve performanslı olacak şekilde tasarlandı.</span>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("yil").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
+
+
